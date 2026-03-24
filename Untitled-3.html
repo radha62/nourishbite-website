@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nourish Bite | Luxury Handcrafted Chocolates</title>
+<meta name="description" content="Nourish Bite – Premium handcrafted chocolates made with the finest ingredients. Indulge in Dark Energy, Mood Booster & Sweet Calm bites. Free delivery on orders above ₹499.">
+<meta property="og:title" content="Nourish Bite | Luxury Handcrafted Chocolates">
+<meta property="og:description" content="Premium handcrafted chocolates for every mood. Order online with Razorpay.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1200">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"Nourish Bite","description":"Premium handcrafted luxury chocolates","url":"https://nourishbite.in","email":"nourishbite@gmail.com"}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A962;
+  --gold-light: #E8C97A;
+  --gold-dark: #9A7D3A;
+  --black: #0a0705;
+  --dark: #100c08;
+  --dark2: #1a1410;
+  --dark3: #241e18;
+  --cream: #f5f0e8;
+  --cream2: #e8dfc8;
+  --text: #d4cabb;
+  --text-muted: #8a8070;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--text);overflow-x:hidden;}
+::selection{background:var(--gold);color:var(--black);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px;}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.8s ease;}
+#loader.hide{opacity:0;pointer-events:none;}
+.loader-logo{font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--gold);letter-spacing:0.12em;animation:fadeInUp 0.8s ease forwards;}
+.loader-sub{font-size:11px;letter-spacing:0.35em;color:var(--text-muted);margin-top:8px;text-transform:uppercase;animation:fadeInUp 0.8s 0.2s ease forwards;opacity:0;}
+.loader-bar{width:120px;height:1px;background:var(--dark3);margin-top:32px;overflow:hidden;animation:fadeInUp 0.8s 0.4s ease forwards;opacity:0;}
+.loader-fill{height:100%;background:var(--gold);width:0%;animation:fillBar 1.2s 0.5s ease forwards;}
+@keyframes fillBar{to{width:100%;}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,padding 0.4s;}
+nav.scrolled{background:rgba(10,7,5,0.92);backdrop-filter:blur(16px);padding:12px 40px;border-bottom:1px solid rgba(201,169,98,0.12);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);letter-spacing:0.08em;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:var(--text);text-decoration:none;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{width:100%;}
+.nav-cart-btn{background:none;border:1px solid rgba(201,169,98,0.35);color:var(--gold);padding:8px 16px;border-radius:30px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.nav-cart-btn:hover{background:rgba(201,169,98,0.1);border-color:var(--gold);}
+.cart-count{background:var(--gold);color:var(--black);border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:500;display:flex;align-items:center;justify-content:center;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:1.5px;background:var(--gold);transition:all 0.3s;display:block;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,7,5,0.97);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--cream);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;}
+.mobile-menu a:hover{color:var(--gold);}
+
+/* ── HERO ── */
+.hero{height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,7,5,0.2) 0%,rgba(10,7,5,0.5) 60%,var(--black) 100%);}
+.hero-content{position:relative;z-index:1;padding:0 20px;}
+.hero-badge{display:inline-block;border:1px solid rgba(201,169,98,0.4);color:var(--gold);font-size:10px;letter-spacing:0.35em;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:28px;animation:fadeInUp 0.8s 1.4s ease forwards;opacity:0;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,9vw,110px);line-height:0.95;color:var(--cream);animation:fadeInUp 0.8s 1.6s ease forwards;opacity:0;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:15px;color:var(--text-muted);max-width:400px;margin:24px auto 0;line-height:1.7;animation:fadeInUp 0.8s 1.8s ease forwards;opacity:0;}
+.hero-actions{display:flex;gap:16px;justify-content:center;margin-top:36px;animation:fadeInUp 0.8s 2s ease forwards;opacity:0;}
+.btn-gold{background:var(--gold);color:var(--black);border:none;padding:14px 32px;border-radius:30px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid rgba(201,169,98,0.5);padding:14px 32px;border-radius:30px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
+.btn-outline:hover{background:rgba(201,169,98,0.08);border-color:var(--gold);}
+.scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeInUp 0.8s 2.2s ease forwards;opacity:0;}
+.scroll-indicator span{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite;}
+@keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--dark2);border-top:1px solid rgba(201,169,98,0.1);border-bottom:1px solid rgba(201,169,98,0.1);padding:24px 40px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px;}
+.stat-item{}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);}
+.stat-label{font-size:11px;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-top:2px;}
+
+/* ── SECTIONS ── */
+.section{padding:90px 40px;}
+.section-tag{font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,56px);color:var(--cream);line-height:1.1;margin-bottom:16px;}
+.section-title em{color:var(--gold);font-style:italic;}
+.section-sub{color:var(--text-muted);font-size:15px;line-height:1.7;max-width:520px;}
+.fade-in{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* ── PRODUCTS ── */
+#products{background:var(--dark);}
+.products-header{text-align:center;margin-bottom:60px;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+.product-card{background:var(--dark2);border:1px solid rgba(201,169,98,0.1);border-radius:var(--radius);overflow:hidden;transition:transform 0.4s,border-color 0.3s;cursor:pointer;}
+.product-card:hover{transform:translateY(-8px);border-color:rgba(201,169,98,0.4);}
+.product-img-wrap{position:relative;overflow:hidden;aspect-ratio:1;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;}
+.product-card:hover .product-img-wrap img{transform:scale(1.06);}
+.product-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--black);font-size:10px;padding:4px 12px;border-radius:30px;letter-spacing:0.1em;text-transform:uppercase;}
+.product-body{padding:20px 22px 24px;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:6px;}
+.product-tagline{font-size:12px;color:var(--text-muted);margin-bottom:16px;line-height:1.5;}
+.product-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.product-tag{font-size:10px;background:rgba(201,169,98,0.08);border:1px solid rgba(201,169,98,0.2);color:var(--gold);padding:3px 10px;border-radius:20px;letter-spacing:0.06em;}
+.product-footer{display:flex;align-items:center;justify-content:space-between;}
+.product-price{font-size:20px;color:var(--gold);font-weight:500;}
+.product-price span{font-size:12px;color:var(--text-muted);margin-left:4px;text-decoration:line-through;}
+.add-btn{background:transparent;border:1px solid rgba(201,169,98,0.4);color:var(--gold);padding:9px 20px;border-radius:30px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;letter-spacing:0.06em;}
+.add-btn:hover{background:var(--gold);color:var(--black);}
+.view-detail-btn{background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline;margin-top:10px;padding:0;display:block;}
+
+/* ── PRODUCT MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;align-items:center;justify-content:center;padding:20px;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--dark2);border:1px solid rgba(201,169,98,0.2);border-radius:var(--radius);max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer;z-index:1;}
+.modal-close:hover{color:var(--gold);}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.modal-img{aspect-ratio:1;overflow:hidden;border-radius:var(--radius) 0 0 var(--radius);}
+.modal-img img{width:100%;height:100%;object-fit:cover;}
+.modal-info{padding:32px 28px;}
+.modal-tag{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--cream);margin-bottom:8px;}
+.modal-price{font-size:22px;color:var(--gold);margin-bottom:18px;}
+.modal-section{margin-bottom:18px;}
+.modal-section-title{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.modal-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.modal-row:last-child{border:none;}
+.modal-row-key{color:var(--text-muted);}
+.modal-row-val{color:var(--cream);}
+.modal-add-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:14px;border-radius:30px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:16px;transition:background 0.2s;}
+.modal-add-btn:hover{background:var(--gold-light);}
+
+/* ── TRUST BADGES ── */
+.trust-bar{background:var(--dark3);padding:28px 40px;}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto;text-align:center;}
+.trust-item{}
+.trust-icon{font-size:24px;margin-bottom:8px;}
+.trust-title{font-size:13px;color:var(--cream);font-weight:500;margin-bottom:3px;}
+.trust-desc{font-size:11px;color:var(--text-muted);}
+
+/* ── GIFT BUILDER ── */
+#gift{background:var(--dark);}
+.gift-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1000px;margin:0 auto;}
+.gift-preview{background:var(--dark2);border:1px solid rgba(201,169,98,0.15);border-radius:var(--radius);padding:28px;min-height:320px;}
+.gift-box-visual{text-align:center;padding:20px 0 24px;}
+.gift-box-icon{font-size:56px;margin-bottom:12px;}
+.gift-box-label{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);}
+.gift-items-list{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.gift-item-row{display:flex;align-items:center;justify-content:space-between;background:rgba(201,169,98,0.05);border:1px solid rgba(201,169,98,0.1);border-radius:8px;padding:10px 14px;font-size:13px;}
+.gift-item-name{color:var(--cream);}
+.gift-item-price{color:var(--gold);}
+.gift-remove{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;}
+.gift-total{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid rgba(201,169,98,0.15);}
+.gift-total-label{color:var(--text-muted);font-size:13px;}
+.gift-total-price{color:var(--gold);font-size:18px;font-weight:500;}
+.gift-controls{}
+.gift-step{margin-bottom:28px;}
+.gift-step-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.gift-options{display:flex;flex-wrap:wrap;gap:8px;}
+.gift-option{background:transparent;border:1px solid rgba(201,169,98,0.2);color:var(--text);padding:8px 16px;border-radius:30px;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.gift-option:hover,.gift-option.active{background:rgba(201,169,98,0.12);border-color:var(--gold);color:var(--gold);}
+.gift-msg-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,98,0.2);color:var(--cream);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;resize:none;margin-top:6px;}
+.gift-msg-input:focus{outline:none;border-color:var(--gold);}
+.gift-order-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:14px;border-radius:30px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:background 0.2s;}
+.gift-order-btn:hover{background:var(--gold-light);}
+
+/* ── ABOUT ── */
+#about{background:var(--dark2);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;max-width:1000px;margin:0 auto;}
+.about-img-wrap{position:relative;}
+.about-img-wrap img{width:100%;border-radius:var(--radius);aspect-ratio:3/4;object-fit:cover;}
+.about-img-badge{position:absolute;bottom:24px;right:-20px;background:var(--gold);color:var(--black);border-radius:var(--radius);padding:20px 24px;text-align:center;}
+.about-img-badge-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;display:block;}
+.about-img-badge-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;}
+.about-text{}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+.about-value{padding:16px;background:rgba(201,169,98,0.05);border:1px solid rgba(201,169,98,0.1);border-radius:var(--radius-sm);}
+.about-value-icon{font-size:20px;margin-bottom:8px;}
+.about-value-title{font-size:13px;color:var(--cream);font-weight:500;margin-bottom:4px;}
+.about-value-desc{font-size:12px;color:var(--text-muted);line-height:1.5;}
+
+/* ── REVIEWS ── */
+#reviews{background:var(--dark);}
+.reviews-header{text-align:center;margin-bottom:50px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto;}
+.review-card{background:var(--dark2);border:1px solid rgba(201,169,98,0.1);border-radius:var(--radius);padding:24px;}
+.review-stars{color:var(--gold);font-size:14px;margin-bottom:14px;letter-spacing:2px;}
+.review-text{font-size:14px;line-height:1.7;color:var(--text);font-style:italic;margin-bottom:18px;}
+.review-author{display:flex;align-items:center;gap:12px;}
+.review-avatar{width:38px;height:38px;border-radius:50%;background:var(--dark3);border:1px solid rgba(201,169,98,0.25);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--gold);flex-shrink:0;}
+.review-name{font-size:13px;color:var(--cream);}
+.review-date{font-size:11px;color:var(--text-muted);}
+.review-verified{font-size:10px;background:rgba(59,109,17,0.2);border:1px solid rgba(97,196,89,0.3);color:#97C459;padding:2px 8px;border-radius:10px;letter-spacing:0.08em;margin-top:3px;display:inline-block;}
+
+/* ── NEWSLETTER ── */
+.newsletter{background:var(--dark3);padding:70px 40px;text-align:center;}
+.newsletter .section-title{font-size:clamp(28px,4vw,44px);}
+.newsletter-form{display:flex;gap:12px;max-width:440px;margin:32px auto 0;justify-content:center;}
+.newsletter-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,98,0.25);color:var(--cream);border-radius:30px;padding:13px 20px;font-family:'DM Sans',sans-serif;font-size:14px;}
+.newsletter-input:focus{outline:none;border-color:var(--gold);}
+.newsletter-input::placeholder{color:var(--text-muted);}
+.newsletter-btn{background:var(--gold);color:var(--black);border:none;border-radius:30px;padding:13px 24px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.06em;white-space:nowrap;transition:background 0.2s;}
+.newsletter-btn:hover{background:var(--gold-light);}
+.newsletter-note{font-size:12px;color:var(--text-muted);margin-top:12px;}
+
+/* ── CONTACT ── */
+#contact{background:var(--dark2);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:900px;margin:0 auto;}
+.contact-info{}
+.contact-row{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;}
+.contact-icon-wrap{width:40px;height:40px;border:1px solid rgba(201,169,98,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.contact-row-title{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.contact-row-val{font-size:14px;color:var(--cream);}
+.contact-form{}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,98,0.18);color:var(--cream);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;}
+.form-input:focus{outline:none;border-color:var(--gold);}
+.form-input::placeholder{color:var(--text-muted);}
+textarea.form-input{resize:none;height:100px;}
+.form-submit{background:var(--gold);color:var(--black);border:none;padding:13px 28px;border-radius:30px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.2s;margin-top:4px;}
+.form-submit:hover{background:var(--gold-light);}
+
+/* ── CART DRAWER ── */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1500;}
+.cart-overlay.open{display:block;}
+.cart-drawer{position:fixed;right:-420px;top:0;bottom:0;width:380px;background:var(--dark2);border-left:1px solid rgba(201,169,98,0.15);z-index:1501;transition:right 0.4s ease;display:flex;flex-direction:column;}
+.cart-drawer.open{right:0;}
+.cart-header{padding:24px 24px 20px;border-bottom:1px solid rgba(201,169,98,0.1);display:flex;align-items:center;justify-content:space-between;}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cream);}
+.cart-close{background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;}
+.cart-close:hover{color:var(--gold);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--text-muted);}
+.cart-empty-icon{font-size:40px;margin-bottom:12px;}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.cart-item-img{width:56px;height:56px;border-radius:8px;object-fit:cover;flex-shrink:0;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-size:14px;color:var(--cream);margin-bottom:4px;}
+.cart-item-price{font-size:13px;color:var(--gold);}
+.cart-item-qty{display:flex;align-items:center;gap:10px;margin-top:8px;}
+.qty-btn{background:rgba(201,169,98,0.1);border:1px solid rgba(201,169,98,0.2);color:var(--gold);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
+.qty-btn:hover{background:rgba(201,169,98,0.25);}
+.qty-num{font-size:13px;color:var(--cream);min-width:16px;text-align:center;}
+.cart-remove{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:15px;padding:0;margin-left:auto;}
+.cart-footer{padding:20px 24px;border-top:1px solid rgba(201,169,98,0.1);}
+.coupon-row{display:flex;gap:8px;margin-bottom:16px;}
+.coupon-input{flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,98,0.2);color:var(--cream);border-radius:8px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:13px;}
+.coupon-input:focus{outline:none;border-color:var(--gold);}
+.coupon-input::placeholder{color:var(--text-muted);}
+.coupon-apply{background:transparent;border:1px solid rgba(201,169,98,0.4);color:var(--gold);padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.coupon-apply:hover{background:rgba(201,169,98,0.1);}
+.cart-summary{margin-bottom:16px;}
+.cart-sum-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;}
+.cart-sum-row.total{padding-top:10px;border-top:1px solid rgba(201,169,98,0.15);font-size:16px;color:var(--cream);}
+.cart-sum-label{color:var(--text-muted);}
+.cart-sum-val{color:var(--cream);}
+.cart-sum-row.total .cart-sum-val{color:var(--gold);}
+.cart-pay-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:15px;border-radius:30px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.cart-pay-btn:hover{background:var(--gold-light);}
+
+/* ── CHATBOT ── */
+.chat-toggle{position:fixed;bottom:28px;right:28px;width:52px;height:52px;background:var(--gold);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1200;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(201,169,98,0.35);}
+.chat-toggle:hover{transform:scale(1.08);}
+.chat-toggle svg{width:22px;height:22px;fill:var(--black);}
+.chat-box{position:fixed;bottom:92px;right:28px;width:320px;background:var(--dark2);border:1px solid rgba(201,169,98,0.2);border-radius:var(--radius);z-index:1200;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.5);}
+.chat-box.open{display:flex;}
+.chat-head{background:var(--dark3);padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(201,169,98,0.1);}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.chat-head-info{}
+.chat-head-name{font-size:13px;color:var(--cream);font-weight:500;}
+.chat-head-status{font-size:11px;color:#97C459;}
+.chat-messages{padding:16px;display:flex;flex-direction:column;gap:10px;min-height:200px;max-height:260px;overflow-y:auto;}
+.chat-msg{padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.5;max-width:85%;}
+.chat-msg.bot{background:var(--dark3);color:var(--text);align-self:flex-start;border-radius:0 10px 10px 10px;}
+.chat-msg.user{background:rgba(201,169,98,0.15);color:var(--cream);align-self:flex-end;text-align:right;border-radius:10px 10px 0 10px;}
+.chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;}
+.chat-quick-btn{background:rgba(201,169,98,0.08);border:1px solid rgba(201,169,98,0.2);color:var(--text-muted);padding:5px 12px;border-radius:30px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+.chat-quick-btn:hover{border-color:var(--gold);color:var(--gold);}
+.chat-input-row{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid rgba(201,169,98,0.08);}
+.chat-input{flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,98,0.15);color:var(--cream);border-radius:20px;padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:13px;}
+.chat-input:focus{outline:none;border-color:var(--gold);}
+.chat-send{background:var(--gold);border:none;color:var(--black);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid rgba(201,169,98,0.1);padding:50px 40px 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.footer-brand{}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.footer-brand-desc{font-size:13px;color:var(--text-muted);line-height:1.7;max-width:260px;}
+.footer-col-title{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:var(--text-muted);}
+.footer-social{display:flex;gap:14px;}
+.social-btn{width:32px;height:32px;border:1px solid rgba(201,169,98,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);text-decoration:none;font-size:13px;transition:all 0.2s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark2);border:1px solid rgba(201,169,98,0.3);color:var(--cream);padding:12px 24px;border-radius:30px;font-size:13px;z-index:3000;opacity:0;transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .modal-grid,.about-layout,.gift-layout,.contact-layout,.footer-grid{grid-template-columns:1fr;}
+  .modal-img{border-radius:var(--radius) var(--radius) 0 0;aspect-ratio:16/9;}
+  .modal-img img{border-radius:var(--radius) var(--radius) 0 0;}
+  .about-img-badge{right:16px;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .trust-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:640px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .section{padding:60px 20px;}
+  .hero-actions{flex-direction:column;align-items:center;}
+  .newsletter-form{flex-direction:column;}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center;}
+  .stats-bar{padding:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">Nourish Bite</div>
+  <div class="loader-sub">Luxury Handcrafted Chocolates</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Nourish Bite</a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#gift">Gift</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cart-btn" onclick="openCart()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Cart <span class="cart-count" id="nav-cart-count">0</span>
+  </button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#products" onclick="toggleMobile()">Products</a>
+  <a href="#gift" onclick="toggleMobile()">Gift</a>
+  <a href="#about" onclick="toggleMobile()">About</a>
+  <a href="#reviews" onclick="toggleMobile()">Reviews</a>
+  <a href="#contact" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-chocolate-dessert-5176/1080p.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Handcrafted with Love Since 2020</div>
+    <h1>Pure <em>Indulgence</em><br>in Every Bite</h1>
+    <p class="hero-sub">Premium handcrafted chocolates made with single-origin cacao and the finest natural ingredients</p>
+    <div class="hero-actions">
+      <button class="btn-gold" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-outline" onclick="document.getElementById('gift').scrollIntoView({behavior:'smooth'})">Build a Gift Box</button>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar fade-in">
+  <div class="stat-item"><div class="stat-num">12K+</div><div class="stat-label">Happy Customers</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Natural Ingredients</div></div>
+  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Flavour Varieties</div></div>
+  <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+</div>
+
+<!-- TRUST BADGES -->
+<div class="trust-bar fade-in">
+  <div class="trust-grid">
+    <div class="trust-item"><div class="trust-icon">🏅</div><div class="trust-title">FSSAI Certified</div><div class="trust-desc">License No. 10020022000000</div></div>
+    <div class="trust-item"><div class="trust-icon">🌿</div><div class="trust-title">No Preservatives</div><div class="trust-desc">100% natural, clean label</div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-title">Free Delivery</div><div class="trust-desc">On orders above ₹499</div></div>
+    <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-title">Easy Returns</div><div class="trust-desc">7-day hassle-free policy</div></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="products-header fade-in">
+    <div class="section-tag">Our Collection</div>
+    <h2 class="section-title">Crafted for Every <em>Mood</em></h2>
+    <p class="section-sub" style="margin:0 auto;">Each bite is a journey — from the rich depths of cacao to the bright lift of natural botanicals.</p>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- GIFT BUILDER -->
+<section class="section" id="gift">
+  <div class="gift-layout">
+    <div class="fade-in">
+      <div class="section-tag">Gift & Gifting</div>
+      <h2 class="section-title">Build Your <em>Gift Box</em></h2>
+      <p class="section-sub" style="margin-bottom:32px;">Create a personalised chocolate gift box for your loved ones. Choose your occasion, your chocolates, and add a heartfelt message.</p>
+      <div class="gift-controls">
+        <div class="gift-step">
+          <div class="gift-step-label">1. Choose Occasion</div>
+          <div class="gift-options">
+            <button class="gift-option active" onclick="selectOccasion(this,'Birthday')">Birthday</button>
+            <button class="gift-option" onclick="selectOccasion(this,'Anniversary')">Anniversary</button>
+            <button class="gift-option" onclick="selectOccasion(this,'Diwali')">Diwali</button>
+            <button class="gift-option" onclick="selectOccasion(this,'Just Because')">Just Because</button>
+          </div>
+        </div>
+        <div class="gift-step">
+          <div class="gift-step-label">2. Add Chocolates</div>
+          <div class="gift-options" id="gift-add-options"></div>
+        </div>
+        <div class="gift-step">
+          <div class="gift-step-label">3. Personal Message</div>
+          <textarea class="gift-msg-input" id="gift-msg" rows="3" placeholder="Write your heartfelt message here..."></textarea>
+        </div>
+        <button class="gift-order-btn" onclick="orderGiftBox()">Add Gift Box to Cart</button>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="gift-preview">
+        <div class="gift-box-visual">
+          <div class="gift-box-icon">🎁</div>
+          <div class="gift-box-label" id="gift-box-label">Birthday Gift Box</div>
+        </div>
+        <div class="gift-items-list" id="gift-items-list">
+          <div style="text-align:center;color:var(--text-muted);font-size:13px;padding:10px 0;">Add chocolates to your box above</div>
+        </div>
+        <div class="gift-total">
+          <span class="gift-total-label">Box Total</span>
+          <span class="gift-total-price" id="gift-total-price">₹0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-layout">
+    <div class="about-img-wrap fade-in">
+      <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600" alt="Chocolate crafting">
+      <div class="about-img-badge">
+        <span class="about-img-badge-num">5+</span>
+        <span class="about-img-badge-label">Years of Craft</span>
+      </div>
+    </div>
+    <div class="about-text fade-in">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Chocolate as an <em>Art Form</em></h2>
+      <p class="section-sub">Nourish Bite was born from a simple belief — that chocolate should be more than just sweet. It should nourish, delight, and create memories.</p>
+      <p style="color:var(--text-muted);font-size:14px;line-height:1.8;margin-top:16px;">Founded in Lucknow in 2020, we source single-origin cacao from the finest farms in Coorg and Kerala. Every chocolate is hand-tempered in small batches, ensuring perfect snap, shine, and flavour in every piece.</p>
+      <div class="about-values">
+        <div class="about-value"><div class="about-value-icon">🌱</div><div class="about-value-title">Ethically Sourced</div><div class="about-value-desc">Direct partnerships with farmers</div></div>
+        <div class="about-value"><div class="about-value-icon">🤲</div><div class="about-value-title">Handcrafted</div><div class="about-value-desc">Small batch, no machines</div></div>
+        <div class="about-value"><div class="about-value-icon">🧪</div><div class="about-value-title">No Additives</div><div class="about-value-desc">Clean label, always</div></div>
+        <div class="about-value"><div class="about-value-icon">💝</div><div class="about-value-title">Made with Love</div><div class="about-value-desc">Every bite, every time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="reviews-header fade-in">
+    <div class="section-tag">Customer Love</div>
+    <h2 class="section-title">What Our <em>Customers</em> Say</h2>
+  </div>
+  <div class="reviews-grid fade-in">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The Dark Energy Bite is absolutely divine. The intensity of the cacao, the slight bitterness — it's exactly what a chocolate connoisseur dreams of."</p>
+      <div class="review-author"><div class="review-avatar">AR</div><div><div class="review-name">Arjun Rao</div><div class="review-date">February 2026</div><span class="review-verified">✓ Verified Purchase</span></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Ordered a gift box for my sister's birthday and she was absolutely thrilled. The packaging is so premium — felt like receiving a luxury gift."</p>
+      <div class="review-author"><div class="review-avatar">PK</div><div><div class="review-name">Priya Kapoor</div><div class="review-date">January 2026</div><span class="review-verified">✓ Verified Purchase</span></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I've tried chocolates from all over the world, and the Sweet Calm Bite rivals anything from Belgium. Incredible quality for the price."</p>
+      <div class="review-author"><div class="review-avatar">SM</div><div><div class="review-name">Shreya Mehta</div><div class="review-date">March 2026</div><span class="review-verified">✓ Verified Purchase</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter fade-in">
+  <div class="section-tag" style="text-align:center;">Stay in the Loop</div>
+  <h2 class="section-title">Get <em>Early Access</em> to New Flavours</h2>
+  <p style="color:var(--text-muted);font-size:14px;max-width:400px;margin:0 auto;">Join 8,000+ chocolate lovers. Get launch alerts, exclusive offers, and tasting notes straight to your inbox.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" id="nl-email" placeholder="your@email.com">
+    <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+  <p class="newsletter-note">No spam, ever. Unsubscribe anytime.</p>
+</div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="contact-layout">
+    <div class="fade-in">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">We'd Love to <em>Hear</em> from You</h2>
+      <p class="section-sub" style="margin-bottom:32px;">For bulk orders, corporate gifting, or just to say hello.</p>
+      <div class="contact-row"><div class="contact-icon-wrap">✉️</div><div><div class="contact-row-title">Email</div><div class="contact-row-val">nourishbite@gmail.com</div></div></div>
+      <div class="contact-row"><div class="contact-icon-wrap">📞</div><div><div class="contact-row-title">Phone / WhatsApp</div><div class="contact-row-val">+91 98765 43210</div></div></div>
+      <div class="contact-row"><div class="contact-icon-wrap">📍</div><div><div class="contact-row-title">Location</div><div class="contact-row-val">Lucknow, Uttar Pradesh, India</div></div></div>
+    </div>
+    <div class="contact-form fade-in">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Name">
+        <input class="form-input" type="email" placeholder="Email Address">
+      </div>
+      <input class="form-input" type="text" placeholder="Subject" style="width:100%;margin-bottom:12px;">
+      <textarea class="form-input" placeholder="Your message..."></textarea>
+      <button class="form-submit" onclick="showToast('Message sent! We will reply within 24 hours.')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Nourish Bite</div>
+      <p class="footer-brand-desc">Premium handcrafted chocolates made with love and the finest natural ingredients. Shipping across India.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <div class="footer-links">
+        <a href="#products">Products</a>
+        <a href="#gift">Gift Boxes</a>
+        <a href="#about">Our Story</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Policies</div>
+      <div class="footer-links">
+        <a href="#">Shipping Policy</a>
+        <a href="#">Return Policy</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Nourish Bite. FSSAI Lic. 10020022000000. All rights reserved.</div>
+    <div class="footer-social">
+      <a class="social-btn" href="#" title="Instagram">in</a>
+      <a class="social-btn" href="#" title="Facebook">f</a>
+      <a class="social-btn" href="#" title="WhatsApp">w</a>
+    </div>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-bg" id="product-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-grid" id="modal-content"></div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Your Cart</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-el"></div>
+  <div class="cart-footer">
+    <div class="coupon-row">
+      <input class="coupon-input" id="coupon-input" placeholder="Coupon code (try SAVE20)">
+      <button class="coupon-apply" onclick="applyCoupon()">Apply</button>
+    </div>
+    <div class="cart-summary" id="cart-summary"></div>
+    <button class="cart-pay-btn" onclick="payNow()">Proceed to Pay</button>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chat-toggle" id="chat-toggle" onclick="toggleChat()">
+  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
+<div class="chat-box" id="chat-box">
+  <div class="chat-head">
+    <div class="chat-avatar">🍫</div>
+    <div class="chat-head-info"><div class="chat-head-name">Nourish Bite Support</div><div class="chat-head-status">● Online</div></div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm here to help you find the perfect chocolate. 😊 What can I assist you with?</div>
+  </div>
+  <div class="chat-quick" id="chat-quick">
+    <button class="chat-quick-btn" onclick="chatReply('What are your best sellers?')">Best sellers</button>
+    <button class="chat-quick-btn" onclick="chatReply('Do you offer gift wrapping?')">Gift wrapping</button>
+    <button class="chat-quick-btn" onclick="chatReply('What is your delivery time?')">Delivery time</button>
+    <button class="chat-quick-btn" onclick="chatReply('Are your chocolates vegan?')">Vegan options</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chat-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+// ── PRODUCT DATA ──
+const PRODUCTS = [
+  {id:1,name:'Dark Energy Bite',tagline:'Rich 70% single-origin dark chocolate with espresso nibs',price:199,oldPrice:249,img:'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=500',badge:'Best Seller',tags:['Dark','Vegan','70% Cacao'],weight:'100g',ingredients:'Cacao mass, cacao butter, coconut sugar, espresso nibs',allergens:'May contain milk traces',shelf:'6 months',flavourNotes:'Espresso · Dried fruit · Bitter finish'},
+  {id:2,name:'Mood Booster Bite',tagline:'Milk chocolate with ashwagandha & roasted almonds',price:149,oldPrice:199,img:'https://images.unsplash.com/photo-1548907040-4baa42d10919?w=500',badge:'New',tags:['Milk','Adaptogen','Nuts'],weight:'80g',ingredients:'Cacao mass, whole milk powder, ashwagandha, roasted almonds, cane sugar',allergens:'Contains milk, tree nuts',shelf:'4 months',flavourNotes:'Caramel · Almond · Warm spice'},
+  {id:3,name:'Sweet Calm Bite',tagline:'White chocolate with lavender & Himalayan pink salt',price:179,oldPrice:229,img:'https://images.unsplash.com/photo-1587248720327-8eb72564be1e?w=500',badge:'Fan Favourite',tags:['White','Floral','Calming'],weight:'80g',ingredients:'Cacao butter, whole milk powder, lavender oil, Himalayan salt, cane sugar',allergens:'Contains milk',shelf:'4 months',flavourNotes:'Vanilla · Floral · Salted finish'},
+];
+
+// ── CART STATE ──
+let cart = [];
+let discount = 0;
+let giftBoxOccasion = 'Birthday';
+let giftBoxItems = [];
+
+// ── LOADER ──
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1800);
+});
+
+// ── NAVBAR SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── MOBILE MENU ──
+function toggleMobile() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ── FADE IN OBSERVER ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── RENDER PRODUCTS ──
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <span class="product-badge">${p.badge}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-tagline">${p.tagline}</div>
+        <div class="product-meta">${p.tags.map(t=>`<span class="product-tag">${t}</span>`).join('')}</div>
+        <div class="product-footer">
+          <div class="product-price">₹${p.price} <span>₹${p.oldPrice}</span></div>
+          <button class="add-btn" onclick="addToCart(${p.id})">+ Add</button>
+        </div>
+        <button class="view-detail-btn" onclick="openModal(${p.id})">View details & ingredients</button>
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.product-card.fade-in').forEach(el => observer.observe(el));
+}
+renderProducts();
+
+// ── GIFT ADD OPTIONS ──
+function renderGiftOptions() {
+  document.getElementById('gift-add-options').innerHTML = PRODUCTS.map(p =>
+    `<button class="gift-option" onclick="addToGift(${p.id})">${p.name} ₹${p.price}</button>`
+  ).join('');
+}
+renderGiftOptions();
+
+// ── PRODUCT MODAL ──
+function openModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-img"><img src="${p.img}" alt="${p.name}"></div>
+    <div class="modal-info">
+      <div class="modal-tag">${p.tags.join(' · ')}</div>
+      <div class="modal-title">${p.name}</div>
+      <div class="modal-price">₹${p.price} <span style="font-size:14px;color:var(--text-muted);text-decoration:line-through;">₹${p.oldPrice}</span></div>
+      <div class="modal-section">
+        <div class="modal-section-title">Flavour Notes</div>
+        <div style="color:var(--text);font-size:14px;font-style:italic;">${p.flavourNotes}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Product Details</div>
+        <div class="modal-row"><span class="modal-row-key">Weight</span><span class="modal-row-val">${p.weight}</span></div>
+        <div class="modal-row"><span class="modal-row-key">Shelf Life</span><span class="modal-row-val">${p.shelf}</span></div>
+        <div class="modal-row"><span class="modal-row-key">Allergens</span><span class="modal-row-val">${p.allergens}</span></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Ingredients</div>
+        <div style="color:var(--text-muted);font-size:12px;line-height:1.6;">${p.ingredients}</div>
+      </div>
+      <button class="modal-add-btn" onclick="addToCart(${p.id});closeModal()">Add to Cart</button>
+    </div>
+  `;
+  document.getElementById('product-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('product-modal').classList.remove('open'); }
+document.getElementById('product-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+
+// ── CART ──
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++;
+  else cart.push({...p, qty: 1});
+  updateCart();
+  showToast(`${p.name} added to cart!`);
+}
+
+function updateCart() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('nav-cart-count').textContent = count;
+  const el = document.getElementById('cart-items-el');
+  if (!cart.length) {
+    el.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🍫</div><div>Your cart is empty</div><div style="font-size:12px;margin-top:6px;color:var(--text-muted)">Add some chocolates above</div></div>`;
+  } else {
+    el.innerHTML = cart.map((item, i) => `
+      <div class="cart-item">
+        <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">₹${item.price} each</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+          </div>
+        </div>
+        <button class="cart-remove" onclick="removeItem(${i})">✕</button>
+      </div>
+    `).join('');
+  }
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const total = Math.max(0, subtotal - discount);
+  const delivery = subtotal >= 499 ? 0 : 49;
+  document.getElementById('cart-summary').innerHTML = `
+    <div class="cart-sum-row"><span class="cart-sum-label">Subtotal</span><span class="cart-sum-val">₹${subtotal}</span></div>
+    ${discount > 0 ? `<div class="cart-sum-row"><span class="cart-sum-label">Discount (SAVE20)</span><span style="color:#97C459;">−₹${discount}</span></div>` : ''}
+    <div class="cart-sum-row"><span class="cart-sum-label">Delivery</span><span class="cart-sum-val">${delivery === 0 ? 'Free' : '₹'+delivery}</span></div>
+    <div class="cart-sum-row total"><span class="cart-sum-label">Total</span><span class="cart-sum-val">₹${total + delivery}</span></div>
+  `;
+}
+
+function changeQty(i, delta) {
+  cart[i].qty += delta;
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  updateCart();
+}
+function removeItem(i) { cart.splice(i, 1); updateCart(); }
+
+function openCart() { document.getElementById('cart-drawer').classList.add('open'); document.getElementById('cart-overlay').classList.add('open'); updateCart(); }
+function closeCart() { document.getElementById('cart-drawer').classList.remove('open'); document.getElementById('cart-overlay').classList.remove('open'); }
+
+function applyCoupon() {
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  if (code === 'SAVE20') { discount = 20; showToast('Coupon SAVE20 applied! ₹20 off.'); updateCart(); }
+  else if (code === 'FIRST10') { discount = 10; showToast('Coupon FIRST10 applied! ₹10 off.'); updateCart(); }
+  else showToast('Invalid coupon code.');
+}
+
+function payNow() {
+  if (!cart.length) { showToast('Your cart is empty!'); return; }
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = subtotal >= 499 ? 0 : 49;
+  const total = Math.max(0, subtotal - discount) + delivery;
+  const options = {
+    key: 'rzp_test_XXXXXXXX',
+    amount: total * 100,
+    currency: 'INR',
+    name: 'Nourish Bite',
+    description: 'Luxury Handcrafted Chocolates',
+    handler: function() {
+      showToast('Payment Successful! Order confirmed. 🎉');
+      sendWhatsApp();
+      cart = []; discount = 0;
+      updateCart(); closeCart();
+    },
+    theme: { color: '#C9A962' }
+  };
+  try { new Razorpay(options).open(); }
+  catch(e) { showToast('Razorpay key not configured. Replace with your live key.'); }
+}
+
+function sendWhatsApp() {
+  let msg = 'New Order from Nourish Bite:%0A%0A';
+  cart.forEach(i => { msg += `${i.name} x${i.qty} - ₹${i.price * i.qty}%0A`; });
+  msg += `%0ATotal: ₹${cart.reduce((s,i)=>s+i.price*i.qty,0)}`;
+  window.open('https://wa.me/91XXXXXXXXXX?text=' + msg);
+}
+
+// ── GIFT BOX ──
+function selectOccasion(el, name) {
+  document.querySelectorAll('.gift-options .gift-option').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  giftBoxOccasion = name;
+  document.getElementById('gift-box-label').textContent = name + ' Gift Box';
+}
+
+function addToGift(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  giftBoxItems.push(p);
+  renderGiftPreview();
+}
+
+function removeGiftItem(i) { giftBoxItems.splice(i, 1); renderGiftPreview(); }
+
+function renderGiftPreview() {
+  const list = document.getElementById('gift-items-list');
+  if (!giftBoxItems.length) {
+    list.innerHTML = `<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:10px 0;">Add chocolates to your box above</div>`;
+  } else {
+    list.innerHTML = giftBoxItems.map((p, i) => `
+      <div class="gift-item-row">
+        <span class="gift-item-name">${p.name}</span>
+        <span class="gift-item-price">₹${p.price}</span>
+        <button class="gift-remove" onclick="removeGiftItem(${i})">✕</button>
+      </div>
+    `).join('');
+  }
+  const total = giftBoxItems.reduce((s, p) => s + p.price, 0);
+  document.getElementById('gift-total-price').textContent = '₹' + total;
+}
+
+function orderGiftBox() {
+  if (!giftBoxItems.length) { showToast('Add at least one chocolate to your gift box!'); return; }
+  const msg = document.getElementById('gift-msg').value;
+  giftBoxItems.forEach(p => addToCart(p.id));
+  showToast(`Gift box added to cart! ${msg ? '💌 Message saved.' : ''}`);
+  openCart();
+}
+
+// ── NEWSLETTER ──
+function subscribeNewsletter() {
+  const val = document.getElementById('nl-email').value;
+  if (!val || !val.includes('@')) { showToast('Please enter a valid email.'); return; }
+  document.getElementById('nl-email').value = '';
+  showToast('You\'re in! Welcome to the Nourish Bite family. 🍫');
+}
+
+// ── CHATBOT ──
+const chatResponses = {
+  'best sellers': 'Our best sellers are the Dark Energy Bite (₹199) and Sweet Calm Bite (₹179). Both are absolute customer favourites! Shall I add one to your cart?',
+  'gift wrapping': 'Yes! All our gift boxes come in premium matte black packaging with a gold ribbon. You can also add a personalised message in our Gift Builder section above.',
+  'delivery time': 'We deliver within 3-5 business days across India. Orders above ₹499 get free delivery! Express delivery (1-2 days) is available for ₹99.',
+  'vegan': 'Our Dark Energy Bite is 100% vegan! The Mood Booster and Sweet Calm contain whole milk. We\'re working on more vegan options — subscribe to our newsletter to be the first to know.',
+};
+
+function toggleChat() {
+  document.getElementById('chat-box').classList.toggle('open');
+}
+
+function chatReply(question) {
+  const msgs = document.getElementById('chat-messages');
+  msgs.innerHTML += `<div class="chat-msg user">${question}</div>`;
+  const key = Object.keys(chatResponses).find(k => question.toLowerCase().includes(k));
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="chat-msg bot">${key ? chatResponses[key] : 'Thanks for your message! Our team will get back to you shortly. You can also reach us at nourishbite@gmail.com.'}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 600);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  chatReply(text);
+  input.value = '';
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── INIT ──
+updateCart();
+</script>
+</body>
+</html>
